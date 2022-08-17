@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../Styles/User/UserRegistrationStyles.css">
+    <script src="../../Scripts/User/UserRegistration.js"></script>
+    <title>FundoNote</title>
+</head>
+<body>
+    <div class="main-body">
+        <div class="main-container">
+           <div class="left-container">
+            <div class="header">
+                <div class="form-logo">
+                    <span  style="color: #4169e1;">F</span>
+                    <span  style="color: #d52b2b;">u</span>
+                    <span  style="color: #ff8c00;">n</span>
+                    <span  style="color: #4169e1;">d</span>
+                    <span  style="color: #008000;">o</span>
+                    <span  style="color: #d52b2b;">N</span>
+                    <span  style="color: #ff8c00;">o</span>
+                    <span  style="color: #4169e1;">t</span>
+                    <span  style="color: #008000;">e</span>
+                  </div>
+                  <span class="header-text">Create your FundoNote Account</span>
+            </div>
+             <form class="registration-form">
+                <div class="form-name">
+                    <div class="name">
+                        <input type="fname" required placeholder="First name" >
+                    </div>
+                    <div class="name">
+                        <input type="lname" required placeholder="Last name">
+                    </div>
+                </div>
+                <div class="user-name">
+                    <input type="username" required placeholder="Username123@gmail.com">
+                    <span class="form-hint1">You can use letters, numbers & periods</span>
+                </div>
+                <a href="" class="form-link">Use my current email address instead</a>
+                <div class="form-pass">
+                    <div class="pass">
+                        <input type="password" class="password" id="pass" required placeholder="Password">
+                    </div>
+                    <div class="pass">
+                        <input type="password" class="password" id="Cpass" required  placeholder="Confirm">
+                    </div>
+                    <div class="iconeye">
+                        <img src="../../Assets/User/eyehide.png" onclick="show();" id="eye">
+                    </div>
+                </div>
+                <a class="form-hint2">Use 8 or more characters with a mix of letters, numbers & symbols</a>
+                <div class="form-btn">
+                    <a href="" class="form-btn1">Sign in instead</a>
+                    <input type="submit" value="Create">
+                </div>
+             </form>
+           </div>
+           <div class="right-container">
+                <img class="side-img" src="../../Assets/User/SideImage0.jpg">
+                <span class="side-img-text">One Account. All of Fundo working for you.</span>
+           </div>
+        </div>
+        <div class="footer-container">
+            <div>
+                <select class="lang-select">
+                    <option value="English (United States)" selected>English (United States)</option>
+                    <option value="English (United Kingdom)">English (United Kingdom)</option>
+                    <option value="Romana">Romana</option>
+                    <option value="Marathi">Marathi</option>
+                  </select>
+            </div>
+            <div class="footer-link">
+                <a  href="https://support.google.com/accounts?hl=en#topic=3382296" >Help</a>
+                <a  href="https://policies.google.com/privacy?gl=IN&hl=en" >Privacy</a>
+                <a  href="https://policies.google.com/terms?gl=IN&hl=en">Terms</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

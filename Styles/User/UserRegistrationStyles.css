@@ -1,0 +1,206 @@
+.main-body{
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items: center;
+    height: 97.5vh;
+    font-family: Arial, sans-serif;
+}
+
+.main-container{
+    display: flex;
+    justify-content:space-between;
+    border: 0.5px solid rgb(222, 221, 221);
+    border-radius: 10px;    
+    width: 49.4%;
+    height: 78.3%;
+    margin-top: 19px;
+
+}
+
+.footer-container{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+    width: 49.5%;
+    top:2.8%;   
+    font-size: 13px; 
+}
+
+.footer-link a{
+    font-size: 12px;
+    text-decoration: none;
+    color: #7e7d7d;
+    font-family: arial;
+    font-weight: 550;
+}
+.footer-link {
+    display: flex;
+    justify-content: space-between;
+    width: 21vh;   
+}
+
+.lang-select{
+    border: none;
+    font-size: 12px;
+}
+
+
+.left-container{
+  width:60%;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 10px 10px 38px;
+}
+
+.form-logo{
+    font-size: 25px;
+    font-family: roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+    word-spacing: -6px;
+    line-height: 58px;
+}
+
+.right-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 55%;
+    padding-top: 17%;
+    line-height: 20px;
+    font-size: 18px;
+}
+
+.side-img{
+    width: 28vh;
+    height: 28vh;
+}
+
+.side-img-text{
+    padding-top: 10px;
+    line-height: 25px;
+    opacity: 0.5;
+    width: 68%;
+    word-wrap: break-word;
+    text-align: center;
+    text-justify: inter-word;
+}
+
+.header-text{
+    font-family:  roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+    font-size: 22px;
+}
+
+.registration-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-name{
+    display: flex;
+    margin-bottom: 9px;
+}
+
+.form-hint1{
+   font-size: 12px;
+   margin:7px 0 0 10px;
+}
+
+.form-link{
+    color: #1144ed;
+    font-size: 15px;
+    margin: 20px 0 20px;
+  }
+
+
+.form-pass{
+    display: flex;
+    margin-top: 15px;
+}
+
+input{
+    outline: none;
+    border: 1px solid #9c9c9c;
+    border-radius: 5px;
+    padding: 0 10px;
+    height: 32px;
+    font-size: 15px;
+    width: 80%;
+  }
+  input:focus{
+    border: 1.5px solid #1f52f9;
+  }
+  .name{
+    display: inline-block;
+  }
+  input[type="fname"]{
+    display: block;
+    margin: 30px 0 0;
+  }
+  input[type="lname"]{
+    display: block;
+    margin: 30px 0 0 10px;
+  }
+
+  input[type="username"]{
+    display: block;
+    width: 92.7%;
+    margin: 15px 0 0 ;
+  }
+
+
+  
+ a{
+    position: relative;
+    text-decoration: none;
+    display: block;
+  }
+  
+
+  .form-hint2{
+    font-size: 12.3px;
+    margin: 7px 0 0 10px;
+    width: 310px;
+  }
+
+  .form-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 105px 5px 0 0;
+  }
+
+  .form-btn1{
+    font-size: 14px;
+    color: #4971f6;
+    display: inline-block;
+    font-family: arial rounded mt;
+  }
+
+  input[type="submit"]{
+    background:  #4971f6;
+    color: #fff;
+    border: none;
+    width: 22%;
+    height: 36px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  
+  input[type="submit"]:hover{
+    background: #254fdb;
+  }
+  
+
+  .iconeye{
+    display: inline-block;
+    padding-right: 10px;
+  }
+  #eye{
+    display: block;
+    position: relative;
+    top: 7px;
+    width:25px;
+    cursor: pointer;
+  }
