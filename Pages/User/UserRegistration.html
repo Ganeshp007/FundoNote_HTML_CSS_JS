@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../Styles/User/UserRegistrationStyles.css">
     <script src="../../Scripts/User/UserRegistration.js"></script>
-    <title>FundoNote</title>
+    <title>FundoNote-Register</title>
 </head>
 <body>
     <div class="main-body">
@@ -47,13 +47,14 @@
                     <div class="pass">
                         <input type="password" class="password" id="Cpass" required  placeholder="Confirm">
                     </div>
-                    <div class="iconeye">
-                        <img src="../../Assets/User/eyehide.png" onclick="show();" id="eye">
-                    </div>
                 </div>
                 <a class="form-hint2">Use 8 or more characters with a mix of letters, numbers & symbols</a>
+                <div class="form-checkbox">
+                    <input type="checkbox" class="checkbox" onclick="show()">
+                    <label class="container">Show password </label>           
+                </div>
                 <div class="form-btn">
-                    <a href="" class="form-btn1">Sign in instead</a>
+                    <a href="http://127.0.0.1:5500/Pages/User/UserLogin.html" class="form-btn1">Sign in instead</a>
                     <input type="submit" value="Create">
                 </div>
              </form>

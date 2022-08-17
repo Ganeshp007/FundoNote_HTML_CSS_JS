@@ -68,18 +68,18 @@
     width: 55%;
     padding-top: 17%;
     line-height: 20px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .side-img{
-    width: 28vh;
-    height: 28vh;
+    width: 65%;
+    height: 48%;
 }
 
 .side-img-text{
     padding-top: 10px;
-    line-height: 25px;
-    opacity: 0.5;
+    line-height: 24px;
+    opacity: 0.8;
     width: 68%;
     word-wrap: break-word;
     text-align: center;
@@ -116,6 +116,7 @@
 .form-pass{
     display: flex;
     margin-top: 15px;
+    width: 102.5%;
 }
 
 input{
@@ -123,7 +124,7 @@ input{
     border: 1px solid #9c9c9c;
     border-radius: 5px;
     padding: 0 10px;
-    height: 32px;
+    height: 34px;
     font-size: 15px;
     width: 80%;
   }
@@ -167,7 +168,7 @@ input{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 105px 5px 0 0;
+    margin: 55px 5px 0 0;
   }
 
   .form-btn1{
@@ -176,6 +177,14 @@ input{
     display: inline-block;
     font-family: arial rounded mt;
   }
+
+  .form-checkbox{
+    display: flex;
+    justify-content: left;
+    margin:18px 0 0 -7px;
+    font-size: 13px;
+
+}
 
   input[type="submit"]{
     background:  #4971f6;
@@ -193,14 +202,9 @@ input{
   }
   
 
-  .iconeye{
-    display: inline-block;
-    padding-right: 10px;
-  }
-  #eye{
-    display: block;
-    position: relative;
-    top: 7px;
-    width:25px;
+  .checkbox{
     cursor: pointer;
+    width: 9%;
+    height: 18px;
+    margin-top: -1px;
   }
