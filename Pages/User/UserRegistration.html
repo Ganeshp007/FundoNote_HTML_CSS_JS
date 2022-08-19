@@ -28,27 +28,29 @@
             </div>
              <form class="registration-form">
                 <div class="form-name">
-                    <div class="name">
-                        <input type="fname" required placeholder="First name" >
+                    <div id="div1">
+                        <input type="fname" class="beforeinput" class="afterinput" id="Fname" placeholder="First name *" >
+                        <span id="nameHint1" class="Errmsg"></span>
                     </div>
-                    <div class="name">
-                        <input type="lname" required placeholder="Last name">
+                    <div id="div2">
+                        <input type="lname" class="beforeinput" class="afterinput" id="Lname" placeholder="Last name *">
+                        <span id="nameHint2"  class="Errmsg" style="padding-left: 20px;"></span>
                     </div>
                 </div>
-                <div class="user-name">
-                    <input type="username" required placeholder="Username123@gmail.com">
-                    <span class="form-hint1">You can use letters, numbers & periods</span>
+                <div id="div3">
+                    <input type="username" class="beforeinput" class="afterinput" id="Uname" placeholder="Username123@gmail.com *">
+                    <span id="UsernameHint" class="form-hint" class="Errmsg" >You can use letters, numbers & periods</span>
                 </div>
                 <a href="" class="form-link">Use my current email address instead</a>
                 <div class="form-pass">
-                    <div class="pass">
-                        <input type="password" class="password" id="pass" required placeholder="Password">
+                    <div id="div4">
+                        <input type="password" class="beforeinput password" class="afterinput" id="pass" placeholder="Password *">
                     </div>
-                    <div class="pass">
-                        <input type="password" class="password" id="Cpass" required  placeholder="Confirm">
+                    <div id="div5">
+                        <input type="password" class="beforeinput password" class="afterinput" id="Cpass"  placeholder="Confirm *">
                     </div>
                 </div>
-                <a class="form-hint2">Use 8 or more characters with a mix of letters, numbers & symbols</a>
+                <a id="passHint" class="form-hint" class="Errmsg">Use 8 or more characters with a mix of letters, numbers & symbols</a>
                 <div class="form-checkbox">
                     <input type="checkbox" class="checkbox" onclick="show()">
                     <label class="container">Show password </label>           

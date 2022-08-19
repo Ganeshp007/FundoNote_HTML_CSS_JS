@@ -28,11 +28,13 @@
         </div>
         <form class="login-form">
             <div class="user-email">
-                <input type="email" required placeholder="Email or phone">
+                <input type="email" class="beforeinput password" class="afterinput" id="emailId" placeholder="Email or phone">
+                <span id="emailHint" class="Errmsg" ></span>
             </div>
             <div class="form-pass">
                 <div class="pass">
-                    <input type="password" class="password" id="pass" required placeholder="Password">
+                    <input type="password" class="beforeinput password" class="afterinput"  id="pass" required placeholder="Password">
+                    <span id="passHint" class="Errmsg" style="padding-left: 49px;"></span>
                 </div>
                 <div class="form-checkbox">
                     <input type="checkbox" class="checkbox" onclick="show()">
