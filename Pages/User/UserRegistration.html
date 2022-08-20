@@ -1,70 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../Styles/User/UserRegistrationStyles.css">
-    <script src="../../Scripts/User/UserRegistration.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>FundoNote-Register</title>
 </head>
+
 <body>
     <div class="main-body">
         <div class="main-container">
-           <div class="left-container">
-            <div class="header">
-                <div class="form-logo">
-                    <span  style="color: #4169e1;">F</span>
-                    <span  style="color: #d52b2b;">u</span>
-                    <span  style="color: #ff8c00;">n</span>
-                    <span  style="color: #4169e1;">d</span>
-                    <span  style="color: #008000;">o</span>
-                    <span  style="color: #d52b2b;">N</span>
-                    <span  style="color: #ff8c00;">o</span>
-                    <span  style="color: #4169e1;">t</span>
-                    <span  style="color: #008000;">e</span>
-                  </div>
-                  <span class="header-text">Create your FundoNote Account</span>
+            <div class="left-container">
+                <div class="header">
+                    <div class="form-logo">
+                        <span style="color: #4169e1;">F</span>
+                        <span style="color: #d52b2b;">u</span>
+                        <span style="color: #ff8c00;">n</span>
+                        <span style="color: #4169e1;">d</span>
+                        <span style="color: #008000;">o</span>
+                        <span style="color: #d52b2b;">N</span>
+                        <span style="color: #ff8c00;">o</span>
+                        <span style="color: #4169e1;">t</span>
+                        <span style="color: #008000;">e</span>
+                    </div>
+                    <span class="header-text">Create your FundoNote Account</span>
+                </div>
+                <form class="registration-form" action="#" id="registrationForm">
+                    <div class="form-name">
+                        <div id="div1">
+                            <input type="fname" class="beforeinput" class="afterinput" id="Fname"
+                                placeholder="First name *">
+                            <span id="nameHint1" class="Errmsg"></span>
+                        </div>
+                        <div id="div2">
+                            <input type="lname" class="beforeinput" class="afterinput" id="Lname"
+                                placeholder="Last name *">
+                            <span id="nameHint2" class="Errmsg" style="padding-left: 20px;"></span>
+                        </div>
+                    </div>
+                    <div id="div3">
+                        <input type="username" class="beforeinput" class="afterinput" id="Uname"
+                            placeholder="Username123@gmail.com *">
+                        <span id="UsernameHint" class="form-hint" class="Errmsg">You can use letters, numbers &
+                            periods</span>
+                    </div>
+                    <a href="" class="form-link">Use my current email address instead</a>
+                    <div class="form-pass">
+                        <div id="div4">
+                            <input type="password" class="beforeinput password" class="afterinput" id="pass"
+                                placeholder="Password *">
+                        </div>
+                        <div id="div5">
+                            <input type="password" class="beforeinput password" class="afterinput" id="Cpass"
+                                placeholder="Confirm *">
+                        </div>
+                    </div>
+                    <a id="passHint" class="form-hint" class="Errmsg">Use 8 or more characters with a mix of letters,
+                        numbers & symbols</a>
+                    <div class="form-checkbox">
+                        <input type="checkbox" class="checkbox" onclick="show()">
+                        <label class="container">Show password </label>
+                    </div>
+                    <div class="form-btn">
+                        <a href="http://127.0.0.1:5500/Pages/User/UserLogin.html" class="form-btn1">Sign in instead</a>
+                        <button id="createAcc" class="submit-btn">Create</button>
+                    </div>
+                </form>
             </div>
-             <form class="registration-form">
-                <div class="form-name">
-                    <div id="div1">
-                        <input type="fname" class="beforeinput" class="afterinput" id="Fname" placeholder="First name *" >
-                        <span id="nameHint1" class="Errmsg"></span>
-                    </div>
-                    <div id="div2">
-                        <input type="lname" class="beforeinput" class="afterinput" id="Lname" placeholder="Last name *">
-                        <span id="nameHint2"  class="Errmsg" style="padding-left: 20px;"></span>
-                    </div>
-                </div>
-                <div id="div3">
-                    <input type="username" class="beforeinput" class="afterinput" id="Uname" placeholder="Username123@gmail.com *">
-                    <span id="UsernameHint" class="form-hint" class="Errmsg" >You can use letters, numbers & periods</span>
-                </div>
-                <a href="" class="form-link">Use my current email address instead</a>
-                <div class="form-pass">
-                    <div id="div4">
-                        <input type="password" class="beforeinput password" class="afterinput" id="pass" placeholder="Password *">
-                    </div>
-                    <div id="div5">
-                        <input type="password" class="beforeinput password" class="afterinput" id="Cpass"  placeholder="Confirm *">
-                    </div>
-                </div>
-                <a id="passHint" class="form-hint" class="Errmsg">Use 8 or more characters with a mix of letters, numbers & symbols</a>
-                <div class="form-checkbox">
-                    <input type="checkbox" class="checkbox" onclick="show()">
-                    <label class="container">Show password </label>           
-                </div>
-                <div class="form-btn">
-                    <a href="http://127.0.0.1:5500/Pages/User/UserLogin.html" class="form-btn1">Sign in instead</a>
-                    <input type="submit" value="Create">
-                </div>
-             </form>
-           </div>
-           <div class="right-container">
+            <div class="right-container">
                 <img class="side-img" src="../../Assets/User/SideImage0.jpg">
                 <span class="side-img-text">One Account. All of Fundo working for you.</span>
-           </div>
+            </div>
         </div>
         <div class="footer-container">
             <div>
@@ -73,14 +82,17 @@
                     <option value="English (United Kingdom)">English (United Kingdom)</option>
                     <option value="Romana">Romana</option>
                     <option value="Marathi">Marathi</option>
-                  </select>
+                </select>
             </div>
             <div class="footer-link">
-                <a  href="https://support.google.com/accounts?hl=en#topic=3382296" >Help</a>
-                <a  href="https://policies.google.com/privacy?gl=IN&hl=en" >Privacy</a>
-                <a  href="https://policies.google.com/terms?gl=IN&hl=en">Terms</a>
+                <a href="https://support.google.com/accounts?hl=en#topic=3382296">Help</a>
+                <a href="https://policies.google.com/privacy?gl=IN&hl=en">Privacy</a>
+                <a href="https://policies.google.com/terms?gl=IN&hl=en">Terms</a>
             </div>
         </div>
     </div>
+    
+    <script src="../../Scripts/User/UserRegistration.js"></script>
 </body>
+
 </html>

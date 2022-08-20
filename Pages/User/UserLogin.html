@@ -1,70 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../Styles/User/UserLogin.css">
-    <script src="../../Scripts/User/UserLogin.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>FundoNote-Login</title>
 </head>
+
 <body>
     <div class="main-body">
-       <div class="login-container">
-        <div class="header">
-            <div class="form-logo">
-                <span  style="color: #4169e1;">F</span>
-                <span  style="color: #d52b2b;">u</span>
-                <span  style="color: #ff8c00;">n</span>
-                <span  style="color: #4169e1;">d</span>
-                <span  style="color: #008000;">o</span>
-                <span  style="color: #d52b2b;">N</span>
-                <span  style="color: #ff8c00;">o</span>
-                <span  style="color: #4169e1;">t</span>
-                <span  style="color: #008000;">e</span>
-              </div>
-              <h4>Sign in</h4>
-              <span class="header-text">Create your FundoNote Account</span>
-        </div>
-        <form class="login-form">
-            <div class="user-email">
-                <input type="email" class="beforeinput password" class="afterinput" id="emailId" placeholder="Email or phone">
-                <span id="emailHint" class="Errmsg" ></span>
+        <div class="login-container">
+            <div class="header">
+                <div class="form-logo">
+                    <span style="color: #4169e1;">F</span>
+                    <span style="color: #d52b2b;">u</span>
+                    <span style="color: #ff8c00;">n</span>
+                    <span style="color: #4169e1;">d</span>
+                    <span style="color: #008000;">o</span>
+                    <span style="color: #d52b2b;">N</span>
+                    <span style="color: #ff8c00;">o</span>
+                    <span style="color: #4169e1;">t</span>
+                    <span style="color: #008000;">e</span>
+                </div>
+                <h4>Sign in</h4>
+                <span class="header-text">Create your FundoNote Account</span>
             </div>
-            <div class="form-pass">
-                <div class="pass">
-                    <input type="password" class="beforeinput password" class="afterinput"  id="pass" required placeholder="Password">
-                    <span id="passHint" class="Errmsg" style="padding-left: 49px;"></span>
+            <form class="login-form" action="#">
+                <div class="user-email">
+                    <input type="email" class="beforeinput password" class="afterinput" id="emailId"
+                        placeholder="Email or phone">
+                    <span id="emailHint" class="Errmsg"></span>
                 </div>
-                <div class="form-checkbox">
-                    <input type="checkbox" class="checkbox" onclick="show()">
-                    <label class="container">Show password </label>           
+                <div class="form-pass">
+                    <div class="pass">
+                        <input type="password" class="beforeinput password" class="afterinput" id="pass"
+                            placeholder="Password">
+                        <span id="passHint" class="Errmsg" style="padding-left: 49px;"></span>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" class="checkbox" onclick="show()">
+                        <label class="container">Show password </label>
+                    </div>
+                    <div class="login-footer">
+                        <span>Not your computer? Use Guest mode to sign in privately.<a class="link1"
+                                href="https://support.google.com/chrome/answer/6130773?hl=en">Learn more</a></span>
+                    </div>
+                    <div class="form-btn">
+                        <a href="http://127.0.0.1:5500/Pages/User/UserRegistration.html" class="form-btn1">Create
+                            account</a>
+                        <button id="Login" class="submit-btn">Login</button>
+                    </div>
                 </div>
-                <div class="login-footer">
-                    <span>Not your computer? Use Guest mode to sign in privately.<a class="link1" href="https://support.google.com/chrome/answer/6130773?hl=en">Learn more</a></span>
-                </div>
-                <div class="form-btn">
-                    <a href="http://127.0.0.1:5500/Pages/User/UserRegistration.html" class="form-btn1">Create account</a>
-                    <input type="submit" value="Login">
-                </div>
-            </div>
-        </form>
-       </div>
-       <div class="footer-container">
-        <div>
-            <select class="lang-select">
-                <option value="English (United States)" selected>English (United States)</option>
-                <option value="English (United Kingdom)">English (United Kingdom)</option>
-                <option value="Romana">Romana</option>
-                <option value="Marathi">Marathi</option>
-              </select>
+            </form>
         </div>
-        <div class="footer-link">
-            <a  href="https://support.google.com/accounts?hl=en#topic=3382296" >Help</a>
-            <a  href="https://policies.google.com/privacy?gl=IN&hl=en" >Privacy</a>
-            <a  href="https://policies.google.com/terms?gl=IN&hl=en">Terms</a>
+        <div class="footer-container">
+            <div>
+                <select class="lang-select">
+                    <option value="English (United States)" selected>English (United States)</option>
+                    <option value="English (United Kingdom)">English (United Kingdom)</option>
+                    <option value="Romana">Romana</option>
+                    <option value="Marathi">Marathi</option>
+                </select>
+            </div>
+            <div class="footer-link">
+                <a href="https://support.google.com/accounts?hl=en#topic=3382296">Help</a>
+                <a href="https://policies.google.com/privacy?gl=IN&hl=en">Privacy</a>
+                <a href="https://policies.google.com/terms?gl=IN&hl=en">Terms</a>
+            </div>
         </div>
     </div>
-    </div>
+    
+    <script src="../../Scripts/User/UserLogin.js"></script>
 </body>
+
 </html>

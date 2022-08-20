@@ -9,6 +9,8 @@ window.addEventListener('DOMContentLoaded',()=>{
     let userName = document.getElementById('emailId');
     let password = document.getElementById('pass');
 
+    const Login = document.querySelector('#Login');
+
     let fn=0, ln=0, un=0, psw=0, cnfpw=0;
     
     const showError = (inputId,spanId,errMsg,beforeinput,afterinput) =>{
@@ -49,6 +51,34 @@ window.addEventListener('DOMContentLoaded',()=>{
         return 1;
       }
    };
+
+
+   Login.addEventListener('click', () => {
+    let Logindata = {
+      Email: userName.value,
+      Password: password.value
+    }
+    console.log(Logindata);
+    $.ajax({
+      url: "https://localhost:44315/User/LoginUser",
+      type: "POST",
+      data: JSON.stringify(Logindata),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      success: function (result) {
+        console.log(result);
+        localStorage.setItem('token',result.data);
+      },
+      error: function (error) {
+        console.log(error);
+      }
+    })
+  })
+
+  function Resetpage(){
+    document.getElementById('login-form').reset();
+  }
 
 
 })

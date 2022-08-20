@@ -150,20 +150,21 @@ input{
     text-decoration: none;
   }
 
-  input[type="submit"]{
-    background: #257bd0;
+  .submit-btn{
+    background:  #257bd0;
     color: #fff;
     border: none;
     width: 22%;
-    height: 34.5px;
-    border-radius: 4px;
+    height: 36px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
   }
   
-  input[type="submit"]:hover{
-    background: #3260f6;
+  .submit-btn:hover{
+    background: #254fdb;
   }
+  
 
 
 

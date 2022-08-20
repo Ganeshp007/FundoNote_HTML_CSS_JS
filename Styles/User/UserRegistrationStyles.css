@@ -177,8 +177,8 @@ input{
 
 }
 
-  input[type="submit"]{
-    background:  #4971f6;
+  .submit-btn{
+    background:  #257bd0;
     color: #fff;
     border: none;
     width: 22%;
@@ -188,7 +188,7 @@ input{
     font-size: 15px;
   }
   
-  input[type="submit"]:hover{
+  .submit-btn:hover{
     background: #254fdb;
   }
   
