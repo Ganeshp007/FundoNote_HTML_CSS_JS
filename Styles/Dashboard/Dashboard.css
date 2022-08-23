@@ -185,7 +185,7 @@ body{
   height: 18.8%;
 }
 
-.create-note input{
+.create-note div input{
   font-family: 'Open Sans';
   font-weight: 500;
   width: 96.5%;
@@ -194,6 +194,29 @@ body{
   border: none;
   padding: 2px 0 0 14.5px;
   font-size: 16px;
+}
+
+.note-title{
+  display: flex;
+  justify-content: space-between;
+}
+
+.pinnote{
+  visibility: hidden;
+  border: none;
+  background: transparent;
+  margin: 8px 12px 0px 0px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.pinnote:hover{
+   background-color: lightgray;
+   border-radius: 50%;
+}
+
+.show{
+  visibility: visible;
 }
 
 .footer-content{
@@ -207,14 +230,16 @@ body{
    text-decoration: none;
    border: none;
    background: transparent;
+   padding-top: 5px;
 }
 
 .close-btn:hover{
-  background-color: rgb(227, 227, 227);
+  background-color: rgb(249, 249, 249);
   transition: all 0.2s;
 }
 
 .close-btn{
+  margin-top: -10px;
   margin-right: 21px;
   font-size: 14px;
   width: 70px;
@@ -268,9 +293,10 @@ textarea::-webkit-scrollbar{
   position: absolute;
   z-index: 1;
   top: 40px;
-  left: -30%;
+  left: -20%;
 }
 
 .tooltip:hover .tooltiptext {
+  transition-delay: 0.7s;
   visibility: visible;
 }

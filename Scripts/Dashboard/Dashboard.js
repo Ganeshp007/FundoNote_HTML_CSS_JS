@@ -60,9 +60,10 @@ window.addEventListener('DOMContentLoaded', () => {
               },
             error: function (error) {
                 console.log(error);
-                toggleNOteFields();
             }
+            
         })
+        toggleNOteFields();
     })
 
     function resetNoteFields()
@@ -77,10 +78,12 @@ window.addEventListener('DOMContentLoaded', () => {
         if(createnote.classList.contains('expand'))
         {
             document.getElementById('title').placeholder = 'Title';
+            document.getElementById('pin').classList.add('show');
         }
         else
         {
             document.getElementById('title').placeholder = 'Take a note...';
+            document.getElementById('pin').classList.remove('show');
             resetNoteFields();
         }
     }
