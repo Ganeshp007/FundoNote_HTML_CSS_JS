@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../Styles/Dashboard/Dashboard.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>FundoNote-Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <div class="left-area">
+            <button class="menu-icon tooltip" id="btn">
+                <img src="../../Assets/Dashboard/menu.png" style="opacity: 0.6;width:24px; height: 26px;" alt="">
+                <span class="tooltiptext">Menu</span>
+            </button>
+            <img src="../../Assets/Dashboard/Notelogo.png" style="margin-left:23px ;width:27px; height: 36px;" alt="">
+            <span class="logo-text">FundoNote</span>
+            <div class="serch-box">
+                <button class="search-icon  tooltip">
+                    <img src="../../Assets/Dashboard/search.png" />
+                    <span class="tooltiptext">Search</span>
+                </button>
+                <input class="search-input" placeholder="Search" autocomplete="off" />
+                <button class="close-icon hide" >
+                    <img style="width: 22px;" src="../../Assets/Dashboard/close.png" />
+                </button>
+            </div>
+        </div>
+        <div class="right-area">
+            <button>
+                <img src="../../Assets/Dashboard/refresh.png" />
+            </button>
+            <button>
+                <img src="../../Assets/Dashboard/List.png" />
+            </button>
+            <button>
+                <img src="../../Assets/Dashboard/settings.png" />
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button>
+                <img src="../../Assets/Dashboard/apps.png" />
+            </button>
+            <button>
+                <img style="width: 30px;" src="../../Assets/Dashboard/profile.png" />
+            </button>
+        </div>
+    </header>
+    <div class="side-navbar" id="navbar">
+        <ul class="nav-list">
+            <li id="notes">
+                <a href="#">
+                    <i><img src="../../Assets/Dashboard/lightbulb.png" alt=""></i>
+                    <span class="link-name">Notes</span>
+                </a>
+            </li>
+            <li id="reminder">
+                <a href="#">
+                    <i class="notes"><img src="../../Assets/Dashboard/notification.png" alt=""></i>
+                    <span class="link-name">Reminders</span>
+                </a>
+            </li>
+            <li id="editLabel">
+                <a href="#">
+                    <i class="notes"><img src="../../Assets/Dashboard/edit.png" alt=""></i>
+                    <span class="link-name">Edit Labels</span>
+                </a>
+            </li>
+            <li id="archive">
+                <a href="#">
+                    <i class="notes"><img src="../../Assets/Dashboard/archive.png" alt=""></i>
+                    <span class="link-name">Archive</span>
+                </a>
+            </li>
+            <li id="trash">
+                <a href="#">
+                    <i class="notes"><img src="../../Assets/Dashboard/Trash.png" style="width: 23px;" alt=""></i>
+                    <span class="link-name">Trash</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="dashboard-content">
+        <div class="create-note" class="expand">
+            <input type="text" id="title" class="create1" autocomplete="off" placeholder="Take a note...">
+            <textarea type="text" id="description" class="create2" autocomplete="off" placeholder="Take a note..." ></textarea>
+            <div id="footer" class="footer-content">
+                <div class="footer-icons">
+                    <button id="Reminde me">
+                        <img src="../../Assets/Dashboard/add_reminder.png" />
+                    </button>
+                    <button id="Collaborator" class="header-icon">
+                        <img src="../../Assets/Dashboard/add_person.png" />
+                    </button>
+                    <button id="Background options" class="bg-color">
+                        <img src="../../Assets/Dashboard/color.png" />
+                    </button>
+                    <button id="Add image">
+                        <img src="../../Assets/Dashboard/add_image.png" />
+                    </button>
+                    <button id="Archive">
+                        <img src="../../Assets/Dashboard/archive.png" />
+                    </button>
+                    <button id="More">
+                        <img src="../../Assets/Dashboard/more.png" />
+                    </button>
+                    <button id="Undo">
+                        <img src="../../Assets/Dashboard/undo.png" />
+                    </button>
+                    <button id="Redo">
+                        <img src="../../Assets/Dashboard/redo.png" />
+                    </button>
+                </div>
+                <button class="close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../Scripts/Dashboard/Dashboard.js"></script>
+</body>
+
+</html>

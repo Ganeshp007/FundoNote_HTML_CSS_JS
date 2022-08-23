@@ -1,0 +1,276 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans';
+}
+
+  header{
+    display: flex;
+    z-index: 1;
+    position: fixed;
+    align-items: center;
+    width: 100%;
+    top: 0;
+    height: 5.3%;
+    padding: 12px 0px 9px 18px;
+    box-shadow: 0px 0.1px 1px 1px lightgray;
+  }
+  
+  .logo-text{
+    display: flex;
+    align-items: center;
+    margin-left: 13px;
+    font-size: 22px;
+    opacity: 0.7;
+    font-family: "Product Sans", sans-serif;
+  }
+
+  .left-area{
+    display: flex;
+    align-items: center;
+    width:130vh;
+  }
+
+  .right-area{
+    display: flex;
+    position: relative;
+    margin-left: 26vh;
+    height: 50px;
+    align-items: center;
+    column-gap: 11px;
+    margin-top: 5px;
+  }
+
+  .serch-box{
+    margin-left: 5vh;
+    display: flex;
+    align-items: center;
+    background-color:rgb(240, 240, 240);
+    border-radius: 8px;
+    width: 89.2vh;
+    height: 48px;
+    margin-top: -2px;
+  }
+
+  header button{
+    background: none;
+    outline: none;
+    border: 0px;
+  }
+  
+  .serch-box input{
+    border: 0px;
+    font-size: 16px;
+    height:28px;
+    background-color: rgb(240, 240, 240);
+    width: 76vh;
+    outline: none;
+  }
+
+  .search-icon{
+    margin: 0px 10px 0px 8px;
+    opacity: 0.7;
+  }
+
+  .close-icon{
+    margin-top: 3px;
+  }
+  
+  .hide{
+    visibility: hidden;
+  }
+
+  header img{
+    width: 25px;
+  }
+
+  header button:hover{
+    background-color: lightgrey;
+    border-radius: 50%;
+    min-height: 70%;
+}
+
+.right-area button{
+    opacity: 0.7;
+}
+
+
+.side-navbar{
+    position: fixed;
+    top:8.2%;
+    left: 0;
+    height: 100%;
+    width: 5%;
+    overflow: hidden;
+    transition: all 0.1s ease-in-out;
+    opacity: 0.7;
+}
+
+.side-navbar.opened{
+  width: 30vh;
+  opacity: 1;
+  padding-right: 2px;
+}
+
+.nav-list{
+    list-style-type: none;
+    padding: 0%;
+    height: auto;
+}
+
+.nav-list li{
+    height: 48px;
+}
+
+.nav-list li:focus{
+  background-color: lightgrey;
+}
+
+.nav-list li a i img{
+  margin-left: 25px;
+  padding-top: 4px;
+}
+
+.nav-list li a i{
+  height: 42px;
+}
+
+.side-navbar ul li a{
+    display: flex;
+    text-decoration: none;
+    color: black;
+}
+
+.side-navbar.opened ul li a:hover{
+  background-color: rgb(237, 234, 234);
+  border-radius: 0px 40px 40px 0px;
+}
+
+.side-navbar ul li a i img:hover{
+  background-color: rgb(237, 234, 234);
+  border-radius: 40px 40px 40px 40px;
+
+}
+
+.link-name{
+    margin-top: 4px;
+    margin-left: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 80%;
+}
+
+.dashboard-content{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 24%;
+  left: 59vh;
+  transform: translate(-17%,-17%);
+  width: 82%;
+  height: 90%;
+}
+
+.create-note{
+  margin: 27.5px 0 2px 19.7%;
+  width: 47.5%;
+  height: 6.5%;
+  box-shadow: 0px 1px 5px 0.5px darkgray;    
+  overflow: hidden;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.create-note.expand{
+  height: 18.8%;
+}
+
+.create-note input{
+  font-family: 'Open Sans';
+  font-weight: 500;
+  width: 96.5%;
+  height: 40px;
+  outline: none;
+  border: none;
+  padding: 2px 0 0 14.5px;
+  font-size: 16px;
+}
+
+.footer-content{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3px;
+}
+
+.footer-content button{
+   outline: none;
+   text-decoration: none;
+   border: none;
+   background: transparent;
+}
+
+.close-btn:hover{
+  background-color: rgb(227, 227, 227);
+  transition: all 0.2s;
+}
+
+.close-btn{
+  margin-right: 21px;
+  font-size: 14px;
+  width: 70px;
+  cursor: pointer;
+}
+
+.footer-content button img{
+  margin-left: 10px;
+  height: 18px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.footer-content button img:hover{
+  background-color: rgb(232, 226, 226);
+  border-radius: 50%;
+}
+
+textarea{
+  font-family: 'Open Sans';
+  font-size: 14px;
+  font-weight: 500;
+  width: 95%;
+  resize:none; 
+  outline: none;
+  border: none;
+  padding: 2% 0 0 2.6% ;
+}
+
+textarea::-webkit-scrollbar{
+  width: 0px;
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  font-size: 12px;
+  visibility: hidden;
+  width: 50px;
+  background-color: rgb(69, 69, 69);
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 40px;
+  left: -30%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
