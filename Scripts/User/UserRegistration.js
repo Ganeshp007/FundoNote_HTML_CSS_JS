@@ -2,15 +2,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
   console.log("=> Connected to Registration.js");
 
-  let regexName = RegExp('^[A-Z]{1}[a-z]{2,}$');
-  let regexEmail = RegExp('^([A-Za-z0-9]{3,20})([.][A-Za-z0-9]{1,10})*([@][a-z]{2,5})+[.][a-z]{2,3}([.][a-z]{2,3})?$');
-  let regexPass = RegExp('^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$_])[a-zA-Z0-9@#$_]{8,}$');
+  const regexName = RegExp('^[A-Z]{1}[a-z]{2,}$');
+  const regexEmail = RegExp('^([A-Za-z0-9]{3,20})([.][A-Za-z0-9]{1,10})*([@][a-z]{2,5})+[.][a-z]{2,3}([.][a-z]{2,3})?$');
+  const regexPass = RegExp('^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$_])[a-zA-Z0-9@#$_]{8,}$');
 
-  let firstName = document.getElementById('Fname');
-  let lastName = document.getElementById('Lname');
-  let userName = document.getElementById('Uname');
-  let password = document.getElementById('pass');
-  let Cpassword = document.getElementById('Cpass');
+  const firstName = document.getElementById('Fname');
+  const lastName = document.getElementById('Lname');
+  const userName = document.getElementById('Uname');
+  const password = document.getElementById('pass');
+  const Cpassword = document.getElementById('Cpass');
 
   const register = document.querySelector('#createAcc');
 
@@ -98,15 +98,23 @@ window.addEventListener('DOMContentLoaded', () => {
       },
       success: function (result) {
         console.log(result);
+        alert('User Registration Sucessfull.Please Login...');
+        Resetpage();
+        window.location.href='http://127.0.0.1:5500/Pages/User/UserLogin.html';
       },
       error: function (error) {
         console.log(error);
+        Resetpage();
       }
     })
   })
 
   function Resetpage(){
-    document.getElementById('registrationForm').reset();
+    firstName.value='';
+    lastName.value='';
+    userName.value='';
+    password.value='';
+    Cpassword.value='';
   }
 
 })
