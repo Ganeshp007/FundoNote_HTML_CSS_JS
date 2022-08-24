@@ -21,6 +21,8 @@ window.addEventListener('DOMContentLoaded', () => {
     let closeIcon=document.querySelector('.close-icon');
     let serchbox=document.querySelector('.search-input');
 
+    let displaytnotes=document.querySelector('.notes');
+
     var noteArray;
 
     btn.onclick = function () {
@@ -57,13 +59,14 @@ window.addEventListener('DOMContentLoaded', () => {
                 console.log(result);
                 resetNoteFields();
                 toggleNOteFields();
+                getAllNotes();
               },
             error: function (error) {
                 console.log(error);
+                toggleNOteFields();
             }
             
         })
-        toggleNOteFields();
     })
 
     function resetNoteFields()
@@ -97,14 +100,60 @@ window.addEventListener('DOMContentLoaded', () => {
                 'Authorization': 'Bearer ' + token
             },
             success: function (result) {
-                console.log(result);
                 noteArray=result.data;
                 noteArray.reverse();
+                console.log(result);
+                displaytnotes.click();
               },
               error: function (error) {
                 console.log(error);
               }
         })
     }
+
+
+// => function for sidenav bar item Selection
+    
+$(function () {
+        $("ul li a").click(function(){
+           $("ul li a").removeClass("active");
+           $("ul li a").removeClass("buttonDisabled");
+           $(this).addClass('active');
+           $(this).addClass('buttonDisabled');
+        });
+        // $("ul li a").hover(function(){
+        //    $("ul li a").removeClass("hover");
+        //    $(this).addClass('hover');
+        // });
+});
+
+    displaytnotes.addEventListener('click',()=>{
+        notes=noteArray.filter((x)=>{
+            return x.isTrash===false && x.isArchive===false;
+        });
+        console.log(notes);
+        displayAllNotes(notes);
+    })
+
+    function displayAllNotes(Notesdata){
+        console.log(Notesdata);
+       document.getElementById('AllNotes').innerHTML=Notesdata.map((note)=>
+       `<div class="display-div">
+            <div>
+            <p class="p1">${note.title}</p>
+            <P class="p2">${note.description}</P>
+            </div>
+            <div class="card-footer">
+            <img src="../../Assets/Dashboard/add_reminder.png" />
+            <img src="../../Assets/Dashboard/add_person.png" />
+            <img src="../../Assets/Dashboard/color.png" />
+            <img src="../../Assets/Dashboard/add_image.png" />
+            <img src="../../Assets/Dashboard/archive.png" />
+            <img src="../../Assets/Dashboard/more.png" />
+            </div>
+        </div>
+       `
+       ).join(' ');
+    };
 
 })
