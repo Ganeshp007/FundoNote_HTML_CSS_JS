@@ -1,6 +1,4 @@
 window.addEventListener('DOMContentLoaded', () => {
-
-    console.log("=> Connected to Dashboard.js");
     let token = localStorage.getItem('token'); //call getitem method to fetch token from localStg
     getAllNotes();  //automatically call when page load and get array of notes
 
@@ -12,8 +10,6 @@ window.addEventListener('DOMContentLoaded', () => {
     const description = document.getElementById('description');
     const bgcolor = 'Blue';
 
-    console.log(title.value);
-
     const createnote = document.querySelector('.create-note');
     const closebtn = document.querySelector('.close-btn');
     const oncreate=document.querySelector('.create1');
@@ -23,6 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const serchbox=document.querySelector('.search-input');
 
     const displaytnotes=document.querySelector('.notes');
+    const Remindernotes=document.querySelector('.Remindernotes');
     const Archivenotes=document.querySelector('.Archivenotes');
     const Trashnotes=document.querySelector('.Trashnotes');
 
@@ -32,14 +29,6 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.onclick = function () {
         navbar.classList.toggle("opened");
     }
-
-    //Event listens for serchbox close-icon hide and show
-    serchbox.addEventListener('focus',()=>{
-        closeIcon.classList.remove('hide')
-    })
-    serchbox.addEventListener('blur',()=>{
-        closeIcon.classList.add('hide');
-    })
 
     //Event listens when clicked on create note box by calling toggleNOtefields() methd/fun
     oncreate.addEventListener('click', () => {
@@ -150,6 +139,19 @@ window.addEventListener('DOMContentLoaded', () => {
         displayAllNotes(notes);
     })
 
+    // Event Listens when clicked on Notes in sidenav menu and calls displayAllNotes() to display All notes (Not Trashed,Archived)
+    Remindernotes.addEventListener('click',()=>{
+        console.log('inside reminder');
+        createnote.style.display = 'block'; // sets the visibility of create-note box to hide
+        document.getElementById('Notes').classList.remove('display-notes');
+        document.getElementById('Notes').classList.add('other-notes');
+        notes=noteArray.filter((x)=>{
+            return x.isTrash===false && x.isReminder===true;
+        });
+        console.log(notes);
+        displayReminderNotes(notes);
+    })
+
     // Event Listens when clicked on Archive in sidenav menu and calls displayAllNotes() to display Archived notes
     Archivenotes.addEventListener('click',()=>{
         createnote.style.display = 'none'; // sets the visibility of create-note box to hide
@@ -174,9 +176,9 @@ window.addEventListener('DOMContentLoaded', () => {
         displayTrashNotes(notes);
     })
 
-
+    
+    //function displays the filtered notearray from respective event listener using template literals to pass code dynamically
     function displayAllNotes(Notesdata){
-        console.log(Notesdata);
        document.getElementById('Notes').innerHTML=Notesdata.map((note)=>
        `<div class="display-div">
             <div>
@@ -196,8 +198,8 @@ window.addEventListener('DOMContentLoaded', () => {
        ).join(' ');
     };
 
+    //function to display trash notes
     function displayTrashNotes(Notesdata){
-        console.log(Notesdata);
        document.getElementById('Notes').innerHTML=Notesdata.map((note)=>
        `<div class="display-div">
             <div>
@@ -212,5 +214,32 @@ window.addEventListener('DOMContentLoaded', () => {
        `
        ).join(' ');
     };
+
+    function displayReminderNotes(Notesdata)
+    { console.log(Notesdata);
+        document.getElementById('Notes').innerHTML=Notesdata.map((note)=>
+        `<div class="display-div">
+             <div>
+                <p class="p1">${note.title}</p>
+                <P class="p2">${note.description}</P>
+            </div>
+            <div class="reminder">
+                <P class="p3">Reminder=${note.isReminder}</p>     
+            </div>
+            <div class="card-footer-trash">
+                <img src="../../Assets/Dashboard/add_reminder.png" />
+                <img src="../../Assets/Dashboard/add_person.png" />
+                <img src="../../Assets/Dashboard/color.png" />
+                <img src="../../Assets/Dashboard/add_image.png" />
+                <img src="../../Assets/Dashboard/archive.png" />
+                <img src="../../Assets/Dashboard/more.png" />
+            </div>
+        </div>
+        `
+    ).join(' ');
+
+   };
+
+
 
 })

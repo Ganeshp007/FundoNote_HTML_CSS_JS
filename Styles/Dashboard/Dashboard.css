@@ -64,7 +64,7 @@ body{
     font-size: 16px;
     height:28px;
     background-color: rgb(240, 240, 240);
-    width: 76vh;
+    width: 79vh;
     outline: none;
   }
 
@@ -73,14 +73,16 @@ body{
     opacity: 0.7;
   }
 
-  .close-icon{
-    margin-top: 3px;
+  
+  #Search::-webkit-search-cancel-button{
+    position:relative;
+    right:2px;  
+    -webkit-appearance: none;
+    background: url(../../Assets/Dashboard/close.png) no-repeat 50% 50%;
+    height: 25px;
+    width: 25px;
   }
   
-  .hide{
-    visibility: hidden;
-  }
-
   header img{
     width: 25px;
   }
@@ -323,7 +325,7 @@ textarea::-webkit-scrollbar{
 
 .other-notes{
   display: flex;
-  position: absolute;
+  position: relative;
   top:10px;
   left: 40px;
   flex-flow: wrap;
@@ -346,6 +348,14 @@ textarea::-webkit-scrollbar{
   border:1px solid lightgray;
 }
 
+.display-div:hover .card-footer{
+  visibility: visible;
+}
+
+.display-div:hover .card-footer-trash{
+  visibility: visible;
+}
+
 .p1{
   margin-top: -1px;
   margin-bottom: 4px;
@@ -359,6 +369,7 @@ textarea::-webkit-scrollbar{
 
 .card-footer{
   display: flex;
+  visibility: hidden;
   justify-content: space-between;
   padding: 10px 0px 0px 0px ;
 }
@@ -370,6 +381,7 @@ textarea::-webkit-scrollbar{
 
 .card-footer-trash{
   display: flex;
+  visibility: hidden;
   padding: 10px 0px 0px 0px ;
 }
 
