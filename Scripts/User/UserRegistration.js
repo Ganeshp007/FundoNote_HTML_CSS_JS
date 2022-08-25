@@ -1,11 +1,10 @@
 window.addEventListener('DOMContentLoaded', () => {
-
-  console.log("=> Connected to Registration.js");
-
+  //Declaration of regex Pattern varaible
   const regexName = RegExp('^[A-Z]{1}[a-z]{2,}$');
   const regexEmail = RegExp('^([A-Za-z0-9]{3,20})([.][A-Za-z0-9]{1,10})*([@][a-z]{2,5})+[.][a-z]{2,3}([.][a-z]{2,3})?$');
   const regexPass = RegExp('^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$_])[a-zA-Z0-9@#$_]{8,}$');
 
+  //Declaration of instance variables  and binding data to them
   const firstName = document.getElementById('Fname');
   const lastName = document.getElementById('Lname');
   const userName = document.getElementById('Uname');
@@ -16,6 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   let fn = 0, ln = 0, un = 0, psw = 0, cnfpw = 0;
 
+  //function to show validation effects and hints
   const showError = (inputId, spanId, errMsg, beforeinput, afterinput) => {
     console.log(errMsg);
     document.getElementById(inputId).classList.remove(beforeinput);
@@ -35,6 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
     return true;
   };
 
+  //Events for Input Fields
   firstName.addEventListener('keyup', () => {
     console.log(firstName.id);
     fn = check(firstName, 'beforeinput', 'afterinput', 'nameHint1', "Enter Valid First name", "", regexName)
@@ -59,6 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
     cnfpw = matchpassword(Cpassword, 'beforeinput', 'afterinput', 'passHint', "Confirm password must match Password", "Use 8 or more characters with a mix of letters, numbers & symbols")
   });
 
+  //Function to match password and Confirmpassword
   function matchpassword(cpass, beforeinput, afterinput, spanId, errMsg, sucessMsg) {
     if (password.value != cpass.value) {
       a = showError(cpass.id, spanId, errMsg, beforeinput, afterinput);
@@ -70,6 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  //Function to check Validation using Regex pattern defined
   function check(input, beforeinput, afterinput, spanId, errMsg, sucessMsg, regex) {
     if (!regex.test(input.value)) {
       a = showError(input.id, spanId, errMsg, beforeinput, afterinput);
@@ -80,7 +83,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-
+  //Event which triggers AddUser API
   register.addEventListener('click', () => {
     let Userdata = {
       Firstname: firstName.value,
@@ -109,6 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
     })
   })
 
+  //function to reset input fields
   function Resetpage(){
     firstName.value='';
     lastName.value='';
@@ -119,6 +123,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 })
 
+//function to show or hide Password Fields
 function show() {
 
   var password = document.getElementById('pass');

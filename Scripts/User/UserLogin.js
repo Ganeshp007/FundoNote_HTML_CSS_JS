@@ -1,11 +1,8 @@
 window.addEventListener('DOMContentLoaded',()=>{
-
-    console.log("=> Connected to Login.js");
-
+    //Declaration of Regex Patterns
     const regexEmail=RegExp('^([A-Za-z0-9]{3,20})([.][A-Za-z0-9]{1,10})*([@][A-Za-z]{2,5})+[.][A-Za-z]{2,3}([.][A-Za-z]{2,3})?$');
     const regexPass=RegExp('^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$_])[a-zA-Z0-9@#$_]{8,}$');
-
-
+    //Declaration of instance variables  and binding data to them
     const userName = document.getElementById('emailId');
     const password = document.getElementById('pass');
 
@@ -13,6 +10,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
     let un=0, psw=0;
     
+    //function to show validation effects and hints
     const showError = (inputId,spanId,errMsg,beforeinput,afterinput) =>{
       console.log(errMsg);
       document.getElementById(inputId).classList.remove(beforeinput);
@@ -30,6 +28,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       return true;
   };
 
+  //Events for Input Fields
   userName.addEventListener('keyup',()=>{
     console.log(userName.id);
       un=check(userName,'beforeinput','afterinput','emailHint',"Enter Valid Email address",regexEmail )
@@ -41,7 +40,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   });
 
 
-
+  //function to check for validations and calls show methods implicitly
   function check(input,beforeinput,afterinput,spanId,errMsg,regex){
     if (!regex.test(input.value)) {
         a = showError(input.id,spanId,errMsg,beforeinput,afterinput);
@@ -53,6 +52,7 @@ window.addEventListener('DOMContentLoaded',()=>{
    };
 
 
+   //Event triggers Login API
    Login.addEventListener('click', () => {
     let Logindata = {
       Email: userName.value,
@@ -68,12 +68,8 @@ window.addEventListener('DOMContentLoaded',()=>{
       },
       success: function (result) {
         console.log(result);
-        localStorage.setItem('token',result.data);
-        token=localStorage.getItem('token');
-        if(token)
-        {
-          window.location.href = "http://127.0.0.1:5500/Pages/Dashboard/Dashboard.html";
-        }
+        set_tokenWithExpiry('token', result.data, 7200000); //2hrs=7,200,000 ms
+        window.location.href = "http://127.0.0.1:5500/Pages/Dashboard/Dashboard.html";
       },
       error: function (error) {
         console.log(error);
@@ -82,12 +78,25 @@ window.addEventListener('DOMContentLoaded',()=>{
     Resetpage();
   })
 
+  //function to reset input fields
   function Resetpage(){
     userName.value='';
     password.value='';
   }
+
+  //function to set token with expiry
+  function set_tokenWithExpiry(key, value, Extime) {
+    const now = new Date()
+    const token= {
+      value: value,
+      expiry: now.getTime() + Extime,
+    }
+    localStorage.setItem(key, JSON.stringify(token));
+  }
+
 })
 
+//function to set token with key,token recieved from backend response and Expiration time
 function show()
 {
     var x = document.getElementById("pass");

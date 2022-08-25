@@ -1,6 +1,13 @@
 window.addEventListener('DOMContentLoaded', () => {
-    let token = localStorage.getItem('token'); //call getitem method to fetch token from localStg
-    getAllNotes();  //automatically call when page load and get array of notes
+    let token = get_tokenWithExpiry('token'); //calls get_token.. fun to validate expiry of token and return it 
+    if (token != null) {
+        getAllNotes();
+    }
+    else {
+        //if token not present or expired it will throw alert and navigate to login pages
+        alert('Please Login first!!');
+        window.location.href = 'http://127.0.0.1:5500/Pages/User/UserLogin.html';  
+    }
 
     //declaration of instance variables
     const navbar = document.querySelector(".side-navbar");
@@ -12,16 +19,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const createnote = document.querySelector('.create-note');
     const closebtn = document.querySelector('.close-btn');
-    const oncreate=document.querySelector('.create1');
-    const desc=document.querySelector('.create2');
+    const oncreate = document.querySelector('.create1');
+    const desc = document.querySelector('.create2');
 
-    const closeIcon=document.querySelector('.close-icon');
-    const serchbox=document.querySelector('.search-input');
+    const closeIcon = document.querySelector('.close-icon');
+    const serchbox = document.querySelector('.search-input');
 
-    const displaytnotes=document.querySelector('.notes');
-    const Remindernotes=document.querySelector('.Remindernotes');
-    const Archivenotes=document.querySelector('.Archivenotes');
-    const Trashnotes=document.querySelector('.Trashnotes');
+    const displaytnotes = document.querySelector('.notes');
+    const Remindernotes = document.querySelector('.Remindernotes');
+    const Archivenotes = document.querySelector('.Archivenotes');
+    const Trashnotes = document.querySelector('.Trashnotes');
 
     var noteArray;
 
@@ -32,7 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     //Event listens when clicked on create note box by calling toggleNOtefields() methd/fun
     oncreate.addEventListener('click', () => {
-       toggleNOteFields();
+        toggleNOteFields();
     })
 
     //Event listends when close btn of create note has been clicked => it will call create note api and close the create note box by calling toggleNoteFields() methd/fun.Also Recalls getAllNotes() fun
@@ -40,9 +47,9 @@ window.addEventListener('DOMContentLoaded', () => {
         let notedata = {
             title: title.value,
             description: description.value,
-            bgcolor:bgcolor
-          }
-          console.log(notedata);
+            bgcolor: bgcolor
+        }
+        console.log(notedata);
         $.ajax({
             url: 'https://localhost:44315/Note/AddNote',
             type: 'POST',
@@ -56,33 +63,29 @@ window.addEventListener('DOMContentLoaded', () => {
                 resetNoteFields();
                 toggleNOteFields();
                 getAllNotes();
-              },
+            },
             error: function (error) {
                 console.log(error);
                 toggleNOteFields();
             }
-            
+
         })
     })
 
     //Function for  resetting Create Note box fields
-    function resetNoteFields()
-    {
-        document.getElementById('title').value='';
-        document.getElementById('description').value='';
+    function resetNoteFields() {
+        document.getElementById('title').value = '';
+        document.getElementById('description').value = '';
     }
 
     //function for toggeling CreateNote box expand and contracts
-    function toggleNOteFields()
-    {
+    function toggleNOteFields() {
         createnote.classList.toggle('expand');
-        if(createnote.classList.contains('expand'))
-        {
+        if (createnote.classList.contains('expand')) {
             document.getElementById('title').placeholder = 'Title';
             document.getElementById('pin').classList.add('show');
         }
-        else
-        {
+        else {
             document.getElementById('title').placeholder = 'Take a note...';
             document.getElementById('pin').classList.remove('show');
             resetNoteFields();
@@ -99,88 +102,88 @@ window.addEventListener('DOMContentLoaded', () => {
                 'Authorization': 'Bearer ' + token
             },
             success: function (result) {
-                noteArray=result.data;
+                noteArray = result.data;
                 noteArray.reverse();
                 console.log(result);
                 displaytnotes.click();
-              },
-              error: function (error) {
+            },
+            error: function (error) {
                 console.log(error);
-              }
+            }
         })
     }
 
 
     // => function for sidenav bar item Selection
-        
+
     $(function () {
-            $("ul li a").click(function(){
+        $("ul li a").click(function () {
             $("ul li a").removeClass("active");
             $("ul li a").removeClass("buttonDisabled");
             $(this).addClass('active');
             $(this).addClass('buttonDisabled');
-            });
-            // $("ul li a").hover(function(){
-            //    $("ul li a").removeClass("hover");
-            //    $(this).addClass('hover');
-            // });
+        });
+        // $("ul li a").hover(function(){
+        //    $("ul li a").removeClass("hover");
+        //    $(this).addClass('hover');
+        // });
     });
 
 
     // Event Listens when clicked on Notes in sidenav menu and calls displayAllNotes() to display All notes (Not Trashed,Archived)
-    displaytnotes.addEventListener('click',()=>{
+    displaytnotes.addEventListener('click', () => {
         createnote.style.display = 'block'; // sets the visibility of create-note box to visible
         document.getElementById('Notes').classList.add('display-notes');
         document.getElementById('Notes').classList.remove('other-notes');
-        notes=noteArray.filter((x)=>{
-            return x.isTrash===false && x.isArchive===false;
+        notes = noteArray.filter((x) => {
+            return x.isTrash === false && x.isArchive === false;
         });
         console.log(notes);
         displayAllNotes(notes);
     })
 
     // Event Listens when clicked on Notes in sidenav menu and calls displayAllNotes() to display All notes (Not Trashed,Archived)
-    Remindernotes.addEventListener('click',()=>{
+    Remindernotes.addEventListener('click', () => {
         console.log('inside reminder');
         createnote.style.display = 'block'; // sets the visibility of create-note box to hide
         document.getElementById('Notes').classList.remove('display-notes');
         document.getElementById('Notes').classList.add('other-notes');
-        notes=noteArray.filter((x)=>{
-            return x.isTrash===false && x.isReminder===true;
+        notes = noteArray.filter((x) => {
+            return x.isTrash === false && x.isReminder === true;
         });
         console.log(notes);
         displayReminderNotes(notes);
     })
 
     // Event Listens when clicked on Archive in sidenav menu and calls displayAllNotes() to display Archived notes
-    Archivenotes.addEventListener('click',()=>{
+    Archivenotes.addEventListener('click', () => {
         createnote.style.display = 'none'; // sets the visibility of create-note box to hide
         document.getElementById('Notes').classList.remove('display-notes');
         document.getElementById('Notes').classList.add('other-notes');
-        notes=noteArray.filter((x)=>{
-            return x.isTrash===false && x.isArchive===true;
+        notes = noteArray.filter((x) => {
+            return x.isTrash === false && x.isArchive === true;
         });
         console.log(notes);
         displayAllNotes(notes);
     })
 
-     // Event Listens when clicked on Trash in sidenav menu and calls displayAllNotes() to display Trashed notes
-     Trashnotes.addEventListener('click',()=>{
+    // Event Listens when clicked on Trash in sidenav menu and calls displayAllNotes() to display Trashed notes
+    Trashnotes.addEventListener('click', () => {
         createnote.style.display = 'none'; // sets the visibility of create-note box to hide
         document.getElementById('Notes').classList.remove('display-notes');
         document.getElementById('Notes').classList.add('other-notes');
-        notes=noteArray.filter((x)=>{
-            return x.isTrash===true;
+        notes = noteArray.filter((x) => {
+            return x.isTrash === true;
         });
         console.log(notes);
         displayTrashNotes(notes);
     })
 
-    
+
     //function displays the filtered notearray from respective event listener using template literals to pass code dynamically
-    function displayAllNotes(Notesdata){
-       document.getElementById('Notes').innerHTML=Notesdata.map((note)=>
-       `<div class="display-div">
+    function displayAllNotes(Notesdata) {
+        document.getElementById('Notes').innerHTML = Notesdata.map((note) =>
+            `<div class="display-div">
             <div>
                 <p class="p1">${note.title}</p>
                 <P class="p2">${note.description}</P>
@@ -195,13 +198,13 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
        `
-       ).join(' ');
+        ).join(' ');
     };
 
     //function to display trash notes
-    function displayTrashNotes(Notesdata){
-       document.getElementById('Notes').innerHTML=Notesdata.map((note)=>
-       `<div class="display-div">
+    function displayTrashNotes(Notesdata) {
+        document.getElementById('Notes').innerHTML = Notesdata.map((note) =>
+            `<div class="display-div">
             <div>
                 <p class="p1">${note.title}</p>
                 <P class="p2">${note.description}</P>
@@ -212,13 +215,13 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
        `
-       ).join(' ');
+        ).join(' ');
     };
 
-    function displayReminderNotes(Notesdata)
-    { console.log(Notesdata);
-        document.getElementById('Notes').innerHTML=Notesdata.map((note)=>
-        `<div class="display-div">
+    function displayReminderNotes(Notesdata) {
+        console.log(Notesdata);
+        document.getElementById('Notes').innerHTML = Notesdata.map((note) =>
+            `<div class="display-div">
              <div>
                 <p class="p1">${note.title}</p>
                 <P class="p2">${note.description}</P>
@@ -236,10 +239,28 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
         `
-    ).join(' ');
+        ).join(' ');
 
-   };
+    };
 
+    //function to get token if not expired or else it will return
+    function get_tokenWithExpiry(key) {
+            let tokendata = localStorage.getItem(key)
+            // if the item doesn't exist, return null
+            if (tokendata==null) {
+                return null;
+            }
 
+            let item = JSON.parse(tokendata);
+            let now = new Date();
+            // compare the expiry time of the item with the current time
+            if (now.getTime() > item.expiry) {
+                // If the item is expired, delete the item from storage
+                // and return null
+                localStorage.removeItem(key)
+                return null;
+            }
+            return item.value;
+    }
 
 })
