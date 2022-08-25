@@ -1,34 +1,39 @@
 window.addEventListener('DOMContentLoaded', () => {
 
     console.log("=> Connected to Dashboard.js");
-    let token = localStorage.getItem('token');
-    getAllNotes();
+    let token = localStorage.getItem('token'); //call getitem method to fetch token from localStg
+    getAllNotes();  //automatically call when page load and get array of notes
 
-    let navbar = document.querySelector(".side-navbar");
-    let btn = document.querySelector('#btn');
+    //declaration of instance variables
+    const navbar = document.querySelector(".side-navbar");
+    const btn = document.querySelector('#btn');
 
-    let title = document.getElementById('title');
-    let description = document.getElementById('description');
-    let bgcolor = 'Blue';
+    const title = document.getElementById('title');
+    const description = document.getElementById('description');
+    const bgcolor = 'Blue';
 
     console.log(title.value);
 
-    let createnote = document.querySelector('.create-note');
-    let closebtn = document.querySelector('.close-btn');
-    let oncreate=document.querySelector('.create1');
-    let desc=document.querySelector('.create2');
+    const createnote = document.querySelector('.create-note');
+    const closebtn = document.querySelector('.close-btn');
+    const oncreate=document.querySelector('.create1');
+    const desc=document.querySelector('.create2');
 
-    let closeIcon=document.querySelector('.close-icon');
-    let serchbox=document.querySelector('.search-input');
+    const closeIcon=document.querySelector('.close-icon');
+    const serchbox=document.querySelector('.search-input');
 
-    let displaytnotes=document.querySelector('.notes');
+    const displaytnotes=document.querySelector('.notes');
+    const Archivenotes=document.querySelector('.Archivenotes');
+    const Trashnotes=document.querySelector('.Trashnotes');
 
     var noteArray;
 
+    //Method to toggle sidebar
     btn.onclick = function () {
         navbar.classList.toggle("opened");
     }
 
+    //Event listens for serchbox close-icon hide and show
     serchbox.addEventListener('focus',()=>{
         closeIcon.classList.remove('hide')
     })
@@ -36,10 +41,12 @@ window.addEventListener('DOMContentLoaded', () => {
         closeIcon.classList.add('hide');
     })
 
+    //Event listens when clicked on create note box by calling toggleNOtefields() methd/fun
     oncreate.addEventListener('click', () => {
        toggleNOteFields();
     })
 
+    //Event listends when close btn of create note has been clicked => it will call create note api and close the create note box by calling toggleNoteFields() methd/fun.Also Recalls getAllNotes() fun
     closebtn.addEventListener('click', () => {
         let notedata = {
             title: title.value,
@@ -69,12 +76,14 @@ window.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+    //Function for  resetting Create Note box fields
     function resetNoteFields()
     {
         document.getElementById('title').value='';
         document.getElementById('description').value='';
     }
 
+    //function for toggeling CreateNote box expand and contracts
     function toggleNOteFields()
     {
         createnote.classList.toggle('expand');
@@ -91,6 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Function for calling getAllnote API and storing notesdata into noteArray
     function getAllNotes() {
         $.ajax({
             url: 'https://localhost:44315/Note/GetAllNote',
@@ -112,22 +122,27 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
 
-// => function for sidenav bar item Selection
-    
-$(function () {
-        $("ul li a").click(function(){
-           $("ul li a").removeClass("active");
-           $("ul li a").removeClass("buttonDisabled");
-           $(this).addClass('active');
-           $(this).addClass('buttonDisabled');
-        });
-        // $("ul li a").hover(function(){
-        //    $("ul li a").removeClass("hover");
-        //    $(this).addClass('hover');
-        // });
-});
+    // => function for sidenav bar item Selection
+        
+    $(function () {
+            $("ul li a").click(function(){
+            $("ul li a").removeClass("active");
+            $("ul li a").removeClass("buttonDisabled");
+            $(this).addClass('active');
+            $(this).addClass('buttonDisabled');
+            });
+            // $("ul li a").hover(function(){
+            //    $("ul li a").removeClass("hover");
+            //    $(this).addClass('hover');
+            // });
+    });
 
+
+    // Event Listens when clicked on Notes in sidenav menu and calls displayAllNotes() to display All notes (Not Trashed,Archived)
     displaytnotes.addEventListener('click',()=>{
+        createnote.style.display = 'block'; // sets the visibility of create-note box to visible
+        document.getElementById('Notes').classList.add('display-notes');
+        document.getElementById('Notes').classList.remove('other-notes');
         notes=noteArray.filter((x)=>{
             return x.isTrash===false && x.isArchive===false;
         });
@@ -135,21 +150,63 @@ $(function () {
         displayAllNotes(notes);
     })
 
+    // Event Listens when clicked on Archive in sidenav menu and calls displayAllNotes() to display Archived notes
+    Archivenotes.addEventListener('click',()=>{
+        createnote.style.display = 'none'; // sets the visibility of create-note box to hide
+        document.getElementById('Notes').classList.remove('display-notes');
+        document.getElementById('Notes').classList.add('other-notes');
+        notes=noteArray.filter((x)=>{
+            return x.isTrash===false && x.isArchive===true;
+        });
+        console.log(notes);
+        displayAllNotes(notes);
+    })
+
+     // Event Listens when clicked on Trash in sidenav menu and calls displayAllNotes() to display Trashed notes
+     Trashnotes.addEventListener('click',()=>{
+        createnote.style.display = 'none'; // sets the visibility of create-note box to hide
+        document.getElementById('Notes').classList.remove('display-notes');
+        document.getElementById('Notes').classList.add('other-notes');
+        notes=noteArray.filter((x)=>{
+            return x.isTrash===true;
+        });
+        console.log(notes);
+        displayTrashNotes(notes);
+    })
+
+
     function displayAllNotes(Notesdata){
         console.log(Notesdata);
-       document.getElementById('AllNotes').innerHTML=Notesdata.map((note)=>
+       document.getElementById('Notes').innerHTML=Notesdata.map((note)=>
        `<div class="display-div">
             <div>
-            <p class="p1">${note.title}</p>
-            <P class="p2">${note.description}</P>
+                <p class="p1">${note.title}</p>
+                <P class="p2">${note.description}</P>
             </div>
             <div class="card-footer">
-            <img src="../../Assets/Dashboard/add_reminder.png" />
-            <img src="../../Assets/Dashboard/add_person.png" />
-            <img src="../../Assets/Dashboard/color.png" />
-            <img src="../../Assets/Dashboard/add_image.png" />
-            <img src="../../Assets/Dashboard/archive.png" />
-            <img src="../../Assets/Dashboard/more.png" />
+                <img src="../../Assets/Dashboard/add_reminder.png" />
+                <img src="../../Assets/Dashboard/add_person.png" />
+                <img src="../../Assets/Dashboard/color.png" />
+                <img src="../../Assets/Dashboard/add_image.png" />
+                <img src="../../Assets/Dashboard/archive.png" />
+                <img src="../../Assets/Dashboard/more.png" />
+            </div>
+        </div>
+       `
+       ).join(' ');
+    };
+
+    function displayTrashNotes(Notesdata){
+        console.log(Notesdata);
+       document.getElementById('Notes').innerHTML=Notesdata.map((note)=>
+       `<div class="display-div">
+            <div>
+                <p class="p1">${note.title}</p>
+                <P class="p2">${note.description}</P>
+            </div>
+            <div class="card-footer-trash">
+                <img src="../../Assets/Dashboard/delete_forever_.png" alt="">
+                <img src="../../Assets/Dashboard/restore_from_trash.png" alt="">
             </div>
         </div>
        `
