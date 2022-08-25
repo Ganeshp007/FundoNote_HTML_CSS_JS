@@ -367,26 +367,43 @@ textarea::-webkit-scrollbar{
   margin-bottom: 3px;
 }
 
+.p3{
+  margin: 2px 0px 5px 0px;
+}
+
 .card-footer{
   display: flex;
   visibility: hidden;
   justify-content: space-between;
-  padding: 10px 0px 0px 0px ;
+  margin: 0px 0px -9px -10px;
 }
 
 .card-footer img{
-  width: 19.5px;
+  width: 19px;
   opacity: 0.8;
+  padding: 10px;
+  margin-right: 2px;
+}
+
+.card-footer img:hover{
+  background-color: lightgray;
+  border-radius: 20px;
 }
 
 .card-footer-trash{
   display: flex;
   visibility: hidden;
-  padding: 10px 0px 0px 0px ;
+  margin: 0px 0px -9px -10px;
 }
 
 .card-footer-trash img{
-  width: 19.5px;
+  width: 22px;
   opacity: 0.8;
-  margin-right: 18px;
+  padding: 8px;
+  margin-right: 6px;
+}
+
+.card-footer-trash img:hover{
+  background-color: lightgray;
+  border-radius: 20px;
 }

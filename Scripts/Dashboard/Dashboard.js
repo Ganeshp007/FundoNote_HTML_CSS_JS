@@ -218,6 +218,7 @@ window.addEventListener('DOMContentLoaded', () => {
         ).join(' ');
     };
 
+    //function to display to be Remindered notes
     function displayReminderNotes(Notesdata) {
         console.log(Notesdata);
         document.getElementById('Notes').innerHTML = Notesdata.map((note) =>
@@ -229,7 +230,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <div class="reminder">
                 <P class="p3">Reminder=${note.isReminder}</p>     
             </div>
-            <div class="card-footer-trash">
+            <div class="card-footer">
                 <img src="../../Assets/Dashboard/add_reminder.png" />
                 <img src="../../Assets/Dashboard/add_person.png" />
                 <img src="../../Assets/Dashboard/color.png" />
