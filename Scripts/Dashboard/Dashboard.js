@@ -1,4 +1,3 @@
-window.addEventListener('DOMContentLoaded', () => {
     let token = get_tokenWithExpiry('token'); //calls get_token.. fun to validate expiry of token and return it 
     if (token != null) {
         getAllNotes();
@@ -115,20 +114,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     // => function for sidenav bar item Selection
-
-    $(function () {
-        $("ul li a").click(function () {
-            $("ul li a").removeClass("active");
-            $("ul li a").removeClass("buttonDisabled");
-            $(this).addClass('active');
-            $(this).addClass('buttonDisabled');
-        });
-        // $("ul li a").hover(function(){
-        //    $("ul li a").removeClass("hover");
-        //    $(this).addClass('hover');
-        // });
-    });
-
+    var links = document.querySelectorAll("ul li");
+    links.forEach(li => {
+        li.addEventListener('click', () => {
+            resetLinks();
+            li.classList.add("active");
+        })
+    })
+    function resetLinks() {
+        links.forEach(li => {
+            li.classList.remove("active");
+        })
+    }
 
     // Event Listens when clicked on Notes in sidenav menu and calls displayAllNotes() to display All notes (Not Trashed,Archived)
     displaytnotes.addEventListener('click', () => {
@@ -189,12 +186,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 <P class="p2">${note.description}</P>
             </div>
             <div class="card-footer">
-                <img src="../../Assets/Dashboard/add_reminder.png" />
-                <img src="../../Assets/Dashboard/add_person.png" />
-                <img src="../../Assets/Dashboard/color.png" />
-                <img src="../../Assets/Dashboard/add_image.png" />
-                <img src="../../Assets/Dashboard/archive.png" />
-                <img src="../../Assets/Dashboard/more.png" />
+                <img onclick="reminderNote(${note.noteId})" src="../../Assets/Dashboard/add_reminder.png" />
+                <img onclick="addPersonNote(${note.noteId})" src="../../Assets/Dashboard/add_person.png" />
+                <img onclick="addcolorNote(${note.noteId})" src="../../Assets/Dashboard/color.png" />
+                <img onclick="addImgNote(${note.noteId})" src="../../Assets/Dashboard/add_image.png" />
+                <img onclick="archiveNote(${note.noteId})" src="../../Assets/Dashboard/archive.png" />
+                <img onclick="trashNote(${note.noteId})" src="../../Assets/Dashboard/more.png" />
             </div>
         </div>
        `
@@ -244,6 +241,45 @@ window.addEventListener('DOMContentLoaded', () => {
 
     };
 
+    //function which call Archive note API
+    function archiveNote(noteid){
+        $.ajax({
+            url: `https://localhost:44315/Note/Archive/${noteid}`,
+            type: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            success: function (result) {
+                console.log(result);
+                getAllNotes();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
+
+    //function which calls trtash Note API
+    function trashNote(noteid)
+    {
+        $.ajax({
+            url: `https://localhost:44315/Note/Trash/${noteid}`,
+            type: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            success: function (result) {
+                console.log(result);
+                getAllNotes();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
+
     //function to get token if not expired or else it will return
     function get_tokenWithExpiry(key) {
             let tokendata = localStorage.getItem(key)
@@ -264,4 +300,3 @@ window.addEventListener('DOMContentLoaded', () => {
             return item.value;
     }
 
-})
