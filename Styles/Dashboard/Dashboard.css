@@ -407,3 +407,35 @@ textarea::-webkit-scrollbar{
   background-color: lightgray;
   border-radius: 20px;
 }
+
+.dropdown-more{
+  position: relative;
+  display: inline-block;
+  height: 20px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 160px;
+  height: 150px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+.dropdown-content span {
+  color: black;
+  padding: 5px 16px 10px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-more span:hover {background-color: #ddd;}
+
+.dropdown-more:hover .dropdown-content{
+  display: block;
+}
