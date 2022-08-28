@@ -181,7 +181,7 @@ Trashnotes.addEventListener('click', () => {
 function displayAllNotes(Notesdata) {
     document.getElementById('Notes').innerHTML = Notesdata.map((note) =>
         `<div class="display-div">
-            <div>
+            <div id="notefields" onclick="dailogopen(${JSON.stringify(note).split('"').join("&quot;")})">
                 <p class="p1">${note.title}</p>
                 <P class="p2">${note.description}</P>
             </div>
@@ -201,10 +201,97 @@ function displayAllNotes(Notesdata) {
                     </div>                
                 </div>
             </div>
+            <div id="updatedailog" class="updatedailogbox">
+                <div class="dailog-headers">
+                    <textarea type="text" id="da-title" class="t1"></textarea>
+                    <img class="d-pin"  src="../../Assets/Dashboard/pin.png" />
+                </div>
+                    <textarea type="text" class="t2" id="da-description" ></textarea>
+                <div class="dailog-footer">
+                    <div>
+                        <img src="../../Assets/Dashboard/add_reminder.png" />
+                        <img src="../../Assets/Dashboard/add_person.png" />
+                        <img src="../../Assets/Dashboard/color.png" />
+                        <img src="../../Assets/Dashboard/add_image.png" />
+                        <img src="../../Assets/Dashboard/archive.png" />
+                        <img src="../../Assets/Dashboard/more.png" />
+                        <img src="../../Assets/Dashboard/undo.png" />
+                        <img src="../../Assets/Dashboard/redo.png" />
+                    </div>   
+                    <div>
+                        <button id="da-close" class="d-close" onclick="updatecall()">Close</button>
+                    </div>    
+                </div>
+            </div>
         </div>
        `
     ).join(' ');
 };
+
+// TO Update Note ====
+var data;
+function dailogopen(notedata){
+    document.querySelector('.main').classList.add("main-blur");
+    document.getElementById("updatedailog").classList.add("updatedailogbox-show");
+    let da_title=document.getElementById("da-title");
+    da_title.innerHTML=notedata.title;
+    let da_description=document.getElementById("da-description");
+    da_description.innerHTML=notedata.description;
+    
+     data={
+        noteId:notedata.noteId,
+        title:da_title.value,
+        description:da_description.value,
+        bgcolor: "Orange",
+        isPin: notedata.isPin,
+        isArchive: notedata.isArchive,
+        isRemainder: notedata.isReminder,
+        isTrash: notedata.isTrash 
+    }
+    console.log(data);
+}
+
+function updatecall()
+{
+    document.getElementById("updatedailog").classList.remove("updatedailogbox-show");
+    document.querySelector('.main').classList.remove("main-blur");
+    let da_title=document.getElementById("da-title");
+    let da_description=document.getElementById("da-description");
+    let flag=false;
+    if(data.title!=da_title.value || data.description!=da_description.value)
+    {
+        data.title=da_title.value;
+        data.description=da_description.value;
+        flag=true;
+    }
+    if(flag==true)
+    {
+        console.log(data);
+      updateNote(data);
+    }
+}
+
+function updateNote(data)
+{
+    $.ajax({
+        url: `https://localhost:44315/Note/UpdateNote/${data.noteId}`,
+        type: 'PUT',
+        data:JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        success: function (result) {
+            console.log(result);
+            getAllNotes();
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+// ======
 
 //function to display trash notes
 function displayTrashNotes(Notesdata) {
@@ -216,7 +303,7 @@ function displayTrashNotes(Notesdata) {
             </div>
             <div class="card-footer-trash">
                 <img src="../../Assets/Dashboard/delete_forever_.png" alt="">
-                <img src="../../Assets/Dashboard/restore_from_trash.png" alt="">
+                <img onclick="trashNote(${note.noteId})" src="../../Assets/Dashboard/restore_from_trash.png" alt="">
             </div>
         </div>
        `
@@ -238,10 +325,26 @@ function displayReminderNotes(Notesdata) {
             <div class="card-footer">
                 <img src="../../Assets/Dashboard/add_reminder.png" />
                 <img src="../../Assets/Dashboard/add_person.png" />
-                <img src="../../Assets/Dashboard/color.png" />
+                <div class="dropdown-color">
+                    <img src="../../Assets/Dashboard/color.png" />
+                        <div id="color-option" class="dropdown-colorContent">
+                            <span>No color</span>
+                            <span>Red</span>
+                            <span>Orange</span>
+                            <span>Blue</span>
+                        </div>                
+                    </div>
                 <img src="../../Assets/Dashboard/add_image.png" />
                 <img src="../../Assets/Dashboard/archive.png" />
-                <img src="../../Assets/Dashboard/more.png" />
+                <div class="dropdown-more">
+                        <img id="More" src="../../Assets/Dashboard/more.png" />
+                        <div id="more-option" class="dropdown-content">
+                            <span onclick="trashNote(${note.noteId})">Delete Note</span>
+                            <span>Add Label</span>
+                            <span>Add Drawing</span>
+                            <span>Make a copy</span>
+                        </div>                
+                    </div>
             </div>
         </div>
         `
