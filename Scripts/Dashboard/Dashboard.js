@@ -179,18 +179,30 @@ Trashnotes.addEventListener('click', () => {
 
 //function displays the filtered notearray from respective event listener using template literals to pass code dynamically
 function displayAllNotes(Notesdata) {
-    document.getElementById('Notes').innerHTML = Notesdata.map((note) =>
-        `<div class="display-div">
-            <div id="notefields" onclick="dailogopen(${JSON.stringify(note).split('"').join("&quot;")})">
-                <p class="p1">${note.title}</p>
-                <P class="p2">${note.description}</P>
+        document.getElementById('Notes').innerHTML = Notesdata.map((note) =>
+        `<div class="display-div" style="background-color:${note.bgcolor};">
+            <div  id="notefields" onclick="dailogopen(${JSON.stringify(note).split('"').join("&quot;")})">
+                <p class="p1" id="title1">${note.title}</p>
+                <P class="p2" id="description1">${note.description}</P>
             </div>
             <div class="card-footer">
                 <img onclick="reminderNote(${note.noteId})" src="../../Assets/Dashboard/add_reminder.png" />
                 <img onclick="addPersonNote(${note.noteId})" src="../../Assets/Dashboard/add_person.png" />
-                <img onclick="addcolorNote(${note.noteId})" src="../../Assets/Dashboard/color.png" />
+                <div class="dropdown-color">
+                <img src="../../Assets/Dashboard/color.png" />
+                    <div id="color-option" class="dropdown-colorContent">
+                        <img onclick="setcolor('white',${note.noteId})" src="../../Assets/Dashboard/icons-unavailable.png" alt="" />
+                        <img onclick="setcolor('rgb(255, 87, 51)',${note.noteId})" src="../../Assets/Dashboard/red-circle.png" alt="" />
+                        <img onclick="setcolor('rgb(255, 189, 51)',${note.noteId})" src="../../Assets/Dashboard/orange-circle.png" alt="" />
+                        <img onclick="setcolor('rgb(243, 246, 59)',${note.noteId})" src="../../Assets/Dashboard/yellow-circle.png" alt="" />
+                        <img onclick="setcolor('rgb(51, 232, 255)',${note.noteId})" src="../../Assets/Dashboard/blue-circle.png" alt="" />
+                        <img onclick="setcolor('rgb(51, 255, 87)',${note.noteId})" src="../../Assets/Dashboard/green-circle.png" alt="" />
+                        <img onclick="setcolor('rgb(183, 127, 42)',${note.noteId})" src="../../Assets/Dashboard/brown-circle.png" alt="" />
+                    </div>                
+                </div>
                 <img onclick="addImgNote(${note.noteId})" src="../../Assets/Dashboard/add_image.png" />
                 <img onclick="archiveNote(${note.noteId})" src="../../Assets/Dashboard/archive.png" />
+                
                 <div class="dropdown-more">
                     <img id="More" src="../../Assets/Dashboard/more.png" />
                     <div id="more-option" class="dropdown-content">
@@ -201,6 +213,7 @@ function displayAllNotes(Notesdata) {
                     </div>                
                 </div>
             </div>
+
             <div id="updatedailog" class="updatedailogbox">
                 <div class="dailog-headers">
                     <textarea type="text" id="da-title" class="t1"></textarea>
@@ -211,10 +224,29 @@ function displayAllNotes(Notesdata) {
                     <div>
                         <img src="../../Assets/Dashboard/add_reminder.png" />
                         <img src="../../Assets/Dashboard/add_person.png" />
-                        <img src="../../Assets/Dashboard/color.png" />
+                        <div class="dropdown-color2">
+                            <img src="../../Assets/Dashboard/color.png" />
+                                <div id="color-option2" class="dropdown-colorContent2">
+                                    <img onclick="updatecolor('white',${note.noteId})" src="../../Assets/Dashboard/icons-unavailable.png" alt="" />
+                                    <img onclick="updatecolor('rgb(252, 44, 3)',${note.noteId})" src="../../Assets/Dashboard/red-circle.png" alt="" />
+                                    <img onclick="updatecolor('rgb(255, 163, 26)',${note.noteId})" src="../../Assets/Dashboard/orange-circle.png" alt="" />
+                                    <img onclick="updatecolor('rgb(255, 255, 51)',${note.noteId})" src="../../Assets/Dashboard/yellow-circle.png" alt="" />
+                                    <img onclick="updatecolor('rgb(3, 90, 252)',${note.noteId})" src="../../Assets/Dashboard/blue-circle.png" alt="" />
+                                    <img onclick="updatecolor('rgb(26, 255, 26)',${note.noteId})" src="../../Assets/Dashboard/green-circle.png" alt="" />
+                                    <img onclick="updatecolor('rgb(114, 85, 32)',${note.noteId})" src="../../Assets/Dashboard/brown-circle.png" alt="" />
+                                </div>                
+                            </div>
                         <img src="../../Assets/Dashboard/add_image.png" />
                         <img src="../../Assets/Dashboard/archive.png" />
-                        <img src="../../Assets/Dashboard/more.png" />
+                        <div class="dropdown-more2">
+                            <img id="More" src="../../Assets/Dashboard/more.png" />
+                            <div id="more-option2" class="dropdown-content2">
+                                <span>Delete Note</span>
+                                <span>Add Label</span>
+                                <span>Add Drawing</span>
+                                <span>Make a copy</span>
+                            </div>                
+                        </div>
                         <img src="../../Assets/Dashboard/undo.png" />
                         <img src="../../Assets/Dashboard/redo.png" />
                     </div>   
@@ -224,25 +256,58 @@ function displayAllNotes(Notesdata) {
                 </div>
             </div>
         </div>
-       `
+        `     
     ).join(' ');
 };
+
+//To update color====
+function setcolor(color,noteId){
+    $.ajax({
+       url: `https://localhost:44315/Note/UpdateBgcolor/${noteId}/${color}`,
+       type: 'PUT',
+       headers: {
+           'Content-Type': 'application/json',
+           'Authorization': 'Bearer ' + token
+       },
+       success: function (result) {
+           console.log(result);
+           getAllNotes();
+       },
+       error: function (error) {
+           console.log(error);
+       }
+   })
+}
+// ======
+
+// For change in bgcolor dailog box
+let noteBgcolor="";
+function updatecolor(color){
+    noteBgcolor=color;
+    document.getElementById("color-option2").style.visibility="hidden";
+}
 
 // TO Update Note ====
 var data;
 function dailogopen(notedata){
     document.querySelector('.main').classList.add("main-blur");
     document.getElementById("updatedailog").classList.add("updatedailogbox-show");
+    document.getElementById("updatedailog").style.background=notedata.bgcolor;
     let da_title=document.getElementById("da-title");
     da_title.innerHTML=notedata.title;
     let da_description=document.getElementById("da-description");
     da_description.innerHTML=notedata.description;
     
+    if(noteBgcolor=="")
+    {
+        noteBgcolor=notedata.bgcolor;
+    }
+
      data={
         noteId:notedata.noteId,
         title:da_title.value,
         description:da_description.value,
-        bgcolor: "Orange",
+        bgcolor: noteBgcolor,
         isPin: notedata.isPin,
         isArchive: notedata.isArchive,
         isRemainder: notedata.isReminder,
@@ -258,10 +323,11 @@ function updatecall()
     let da_title=document.getElementById("da-title");
     let da_description=document.getElementById("da-description");
     let flag=false;
-    if(data.title!=da_title.value || data.description!=da_description.value)
+    if(data.title!=da_title.value || data.description!=da_description.value || data.bgcolor!= noteBgcolor)
     {
         data.title=da_title.value;
         data.description=da_description.value;
+        data.bgcolor=noteBgcolor;
         flag=true;
     }
     if(flag==true)

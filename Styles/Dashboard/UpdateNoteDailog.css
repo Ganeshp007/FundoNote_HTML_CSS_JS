@@ -4,85 +4,146 @@
 }
 
 .updatedailogbox{
-    display: flex;
-    visibility: hidden;
-    flex-direction: column;
-    position: absolute;
-    z-index: 1; 
-    top:15vh;
-    left: 27vh;  
-    width: 75.5vh;
-    min-height: 180px;
-    box-shadow: 0px 1px 5px 0.5px darkgray;    
-    overflow: hidden;
-    border-radius: 5px;
-    opacity: 1;
-    background: white;
-  }
-  
-  .updatedailogbox-show{
+  display: flex;
+  visibility: hidden;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1; 
+  top:15vh;
+  left: 27vh;  
+  width: 75.5vh;
+  min-height: 180px;
+  box-shadow: 0px 1px 5px 0.5px darkgray;    
+  overflow: hidden;
+  border-radius: 5px;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.updatedailogbox-show{
   visibility: visible;
-  pointer-events: fill;
+  opacity: 0.97;
+}
+
+.dailog-headers{
+    display: flex;
+    justify-content: space-between;
+}
+
+.t1{
+  padding: 15px 2px 5px 15px;
+  background: none;
+}
+
+.t2{
+  background: none;
+  width: 88%;
+  min-height: 55px;
+  padding: 5px 0px 5px 15px;
+}
+
+
+.dailog-headers img{
+    height: 30px;
+    margin: 6px 10px 0px 0px;
+    padding: 5px;
+    opacity: 0.7;
+    cursor: pointer;
   }
-  
-  .dailog-headers{
-      display: flex;
-      justify-content: space-between;
+
+  .dailog-headers img:hover{
+    background-color: lightgray;
+    border-radius: 20px;
   }
-  
-  .t1{
-    padding: 15px 2px 5px 15px;
+
+
+  .dailog-footer{
+    display: flex;
+    justify-content: space-between;
+    margin: 18px 0px -9px 5px;
   }
-  
-  .t2{
-    width: 88%;
-    min-height: 55px;
-    padding: 5px 0px 5px 15px;
+
+  .dailog-footer img{
+    width: 19px;
+    opacity: 0.8;
+    padding: 10px;
+    margin-right: 2px;
   }
-  
-  
-  .dailog-headers img{
-      height: 30px;
-      margin: 6px 10px 0px 0px;
-      padding: 5px;
-      opacity: 0.7;
-      cursor: pointer;
-    }
-  
-    .dailog-headers img:hover{
-      background-color: lightgray;
-      border-radius: 20px;
-    }
-  
-  
-    .dailog-footer{
-      display: flex;
-      justify-content: space-between;
-      margin: 18px 0px -9px 5px;
-    }
-  
-    .dailog-footer img{
-      width: 19px;
-      opacity: 0.8;
-      padding: 10px;
-      margin-right: 2px;
-    }
-  
-    .dailog-footer img:hover{
-      background-color: lightgray;
-      border-radius: 20px;
-    }
-  
-    .d-close{
-      border: none;
-      background: white;
-      margin-right: 40px;
-      padding: 10px;
-      width: 70px;
-      cursor: pointer;
-    }
-  
-    .d-close:hover{
-      background-color: rgb(245, 241, 241);
-    }
+
+  .dailog-footer img:hover{
+    background-color: lightgray;
+    border-radius: 20px;
+  }
+
+  .d-close{
+    border: none;
+    background: none;
+    margin-right: 40px;
+    padding: 10px;
+    width: 70px;
+    cursor: pointer;
+  }
+
+  .d-close:hover{
+    background-color: rgb(245, 241, 241);
+  }
+
+
+.dropdown-color2{
+  position: relative;
+  display: inline-block;
+  height: 20px;
+}
+
+.dropdown-colorContent2{
+  display: flex;
+  flex-flow: wrap;
+  visibility: hidden;
+  position: fixed;
+  background-color: #f1f1f1;
+  width: 290px;
+  height: 40px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-top: -4px;
+}
+
+.dropdown-color2:hover .dropdown-colorContent2{
+  visibility: visible;
+}
+
+.dropdown-more2{
+  position: relative;
+  display: inline-block;
+  height: 20px;
+}
+
+.dropdown-content2 {
+  display: none;
+  position: fixed;
+  background-color: #f1f1f1;
+  width: 160px;
+  height: 150px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-top: -4px;
+}
+
+
+.dropdown-content2 span {
+  color: black;
+  padding: 5px 16px 10px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-more2 span:hover {background-color: #ddd;}
+
+.dropdown-more2:hover .dropdown-content2{
+  display: block;
+}
+
+
   
